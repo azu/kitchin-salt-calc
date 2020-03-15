@@ -278,6 +278,9 @@ type Query = {
 };
 
 function useQuery(initialValue: Query) {
+    if (!process.browser) {
+        return initialValue;
+    }
     const parseWeight = (weightQuery?: string | null) => {
         if (!weightQuery) {
             return null;
