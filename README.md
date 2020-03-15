@@ -1,33 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# キッチン塩分計算機
 
-## Getting Started
+材料に入れる塩分を容器と調味料の組み合わせから計算するツールです。
 
-First, run the development server:
+- <https://kitchin-salt-calc.netlify.com/>
 
-```bash
-npm run dev
-# or
-yarn dev
+## Usage
+
+1. <https://kitchin-salt-calc.netlify.com/> を開く
+2. 設定データに自分の調味料と容器をJSON形式で記入してSaveする
+3. 材料の重さを入力すると`調味料`と`容器`の組み合わせで入れる量が表示される
+
+
+設定データの例:
+```json
+{
+    "塩分濃度": 0.6,
+    "調味料": [
+        {
+            "名前": "塩",
+            "ふりがな": "しお",
+            "食塩相当量": 100
+        },
+        {
+            "名前": "めんつゆ",
+            "ふりがな": "めんつゆ",
+            "食塩相当量": 16.0
+        },
+        {
+            "名前": "コンソメ",
+            "ふりがな": "こんそめ",
+            "食塩相当量": 2.5
+        }
+    ],
+    "容器": [
+        {
+            "名前": "ホットクック内鍋",
+            "ふりがな": "ホットクック",
+            "重さ": 562
+        },
+        {
+            "名前": "ボール1",
+            "ふりがな": "ぼーるいち",
+            "重さ": 180
+        },
+        {
+            "名前": "ボール2",
+            "ふりがな": "ぼーるに",
+            "重さ": 280
+        },
+        {
+            "名前": "ボール3",
+            "ふりがな": "ぼーるさん",
+            "重さ": 500
+        },
+        {
+            "名前": "ボール4",
+            "ふりがな": "ぼーるよん",
+            "重さ": 700
+        },
+        {
+            "名前": "ボール5",
+            "ふりがな": "ぼーるご",
+            "重さ": 1000
+        }
+    ]
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on ZEIT Now
-
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+塩分濃度は0.5 ~ 0.7%程度で好きな値を入れると良さそう。
 
 ## Sponsors
 
