@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     Flex,
     FormControl,
@@ -11,9 +11,8 @@ import {
     SliderTrack,
     ThemeProvider
 } from "@chakra-ui/core";
-import { Button, IconButton, Text, Textarea } from "@chakra-ui/core/dist";
+import { Button, Text, Textarea } from "@chakra-ui/core/dist";
 import { useLocalStorage } from "../src/hooks/use-localStorage";
-import { settings } from "cluster";
 
 const tableData = {
     塩分濃度: 0.6, // 0.6%
