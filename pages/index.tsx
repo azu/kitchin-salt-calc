@@ -14,59 +14,6 @@ import {
 import { Button, Text, Textarea } from "@chakra-ui/core/dist";
 import { useLocalStorage } from "../src/hooks/use-localStorage";
 
-const tableData = {
-    塩分濃度: 0.6, // 0.6%
-    調味料: [
-        {
-            名前: "塩",
-            ふりがな: "しお",
-            食塩相当量: 100
-        },
-        {
-            名前: "めんつゆ",
-            ふりがな: "めんつゆ",
-            食塩相当量: 16.4
-        },
-        {
-            名前: "コンソメ",
-            ふりがな: "こんそめ",
-            食塩相当量: 2.5
-        }
-    ],
-    容器: [
-        {
-            名前: "ホットクック",
-            ふりがな: "ホットクック",
-            重さ: 562
-        },
-        {
-            名前: "ボール1",
-            ふりがな: "ぼーるいち",
-            重さ: 181
-        },
-        {
-            名前: "ボール2",
-            ふりがな: "ぼーるに",
-            重さ: 283
-        },
-        {
-            名前: "ボール3",
-            ふりがな: "ぼーるさん",
-            重さ: 527
-        },
-        {
-            名前: "ボール4",
-            ふりがな: "ぼーるよん",
-            重さ: 756
-        },
-        {
-            名前: "ボール5",
-            ふりがな: "ぼーるご",
-            重さ: 1013
-        }
-    ]
-};
-
 type SettingTextAreaProps = {
     jsonValue: {};
     handleChange: (jsonValue: Settings) => void;
@@ -203,7 +150,13 @@ const SliderInput = (props: SliderInputProps) => {
             <Slider flex="1" value={props.value} onChange={props.handleChange} min={0} max={3000}>
                 <SliderTrack />
                 <SliderFilledTrack />
-                <SliderThumb fontSize="sm" width="32px" height="20px" children={props.value} />
+                <SliderThumb
+                    defaultValue={props.value}
+                    fontSize="sm"
+                    width="32px"
+                    height="20px"
+                    children={props.value}
+                />
             </Slider>
         </Flex>
     );
@@ -227,19 +180,23 @@ type DataTableProps = {
     settings: Settings;
 };
 const DataTable = (props: DataTableProps) => {
+    const headers = [
+        <th data-type="item-container" key={"_入れ物_"}>
+            入れ物
+        </th>
+    ].concat(
+        props.settings["調味料"].map(item => {
+            return (
+                <th data-type="text-short" key={item["名前"]}>
+                    {item["名前"]}
+                </th>
+            );
+        })
+    );
     return (
         <table className={"main-table"}>
             <thead>
-                <tr>
-                    <th data-type="item-container">入れ物</th>
-                    {props.settings["調味料"].map(item => {
-                        return (
-                            <th data-type="text-short" key={item["名前"]}>
-                                {item["名前"]} <span className="resize-handle" />
-                            </th>
-                        );
-                    })}
-                </tr>
+                <tr>{headers}</tr>
             </thead>
             <tbody>
                 {props.settings["容器"]
@@ -250,7 +207,7 @@ const DataTable = (props: DataTableProps) => {
                         return (
                             <tr key={container["名前"]}>
                                 <td data-type="item-container">{container["名前"]}</td>
-                                {tableData["調味料"].map(relishItem => {
+                                {props.settings["調味料"].map(relishItem => {
                                     return (
                                         <td key={container["重さ"] + relishItem["名前"]}>
                                             {calcConcentrationOfSalt(
@@ -357,11 +314,7 @@ const Home = () => {
             </main>
 
             <footer>
-                <a
-                    href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+                <a href="https://github.com/azu/kitchin-salt-calc" target="_blank" rel="noopener noreferrer">
                     Source Code: GitHub
                 </a>
             </footer>
