@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/core";
 import { Button, Text, Textarea } from "@chakra-ui/core/dist";
 import { useLocalStorage } from "../src/hooks/use-localStorage";
+import { useMount } from "../src/hooks/use-mount";
 
 type SettingTextAreaProps = {
     jsonValue: {};
@@ -260,6 +261,7 @@ function useQuery(initialValue: Query) {
 }
 
 const Home = () => {
+    const [isMounted] = useMount();
     const query = useQuery({
         weight: 1250
     });
@@ -302,14 +304,16 @@ const Home = () => {
                     <FormLabel className={"main-inputLabel"} htmlFor={"main-input"} as="legend">
                         材料の重さ(g)
                     </FormLabel>
-                    <SliderInput
-                        inputId={"main-input"}
-                        className={"main-input"}
-                        value={input}
-                        handleChange={handleInputChange}
-                    />
+                    {isMounted ? (
+                        <SliderInput
+                            inputId={"main-input"}
+                            className={"main-input"}
+                            value={input}
+                            handleChange={handleInputChange}
+                        />
+                    ) : null}
                 </FormControl>
-                <DataTable input={input} settings={settingsValueWithDefault} />
+                {isMounted ? <DataTable input={input} settings={settingsValueWithDefault} /> : null}
                 <SettingTextArea jsonValue={settingsValue} handleChange={handleSettingsChange} />
             </main>
 
