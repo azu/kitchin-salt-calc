@@ -458,7 +458,7 @@ const Home = () => {
 
                 th,
                 td {
-                    padding: 15px;
+                    padding: 12px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
@@ -476,12 +476,6 @@ const Home = () => {
 
                 th:last-child {
                     border: 0;
-                }
-
-                .resize-handle:hover,
-            /* The following selector is needed so the handle is visible during resize even if the mouse isn't over the handle anymore */
-            .header--being-resized .resize-handle {
-                    opacity: 0.5;
                 }
 
                 th:hover .resize-handle {
