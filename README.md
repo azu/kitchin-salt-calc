@@ -69,6 +69,18 @@
 
 塩分濃度は0.5 ~ 0.7%程度で好きな値を入れると良さそう。
 
+## Tips
+
+### `?weight=<数値>` での初期値
+
+次のように`?weight=<数値>`で材料の初期値を入力できます。
+
+- https://kitchin-salt-calc.netlify.com/?weight=200
+
+`weight=<数値><その他文字列>` の場合に数値のみを取り出すので、
+音声入力で数値をクエリに渡して開く用途に利用できます。
+
+
 ## Sponsors
 
 <a href="https://www.netlify.com">
