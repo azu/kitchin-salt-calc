@@ -22,7 +22,7 @@ type SettingTextAreaProps = {
 const SettingTextArea = (props: SettingTextAreaProps) => {
     const [invalid, setInvalid] = useState<boolean>();
     const refHTMLTextAreaElement = useRef<HTMLTextAreaElement>(null);
-    const [textAreaValue, setTextAreaValue] = useState<string>(JSON.stringify(props.jsonValue));
+    const [textAreaValue, setTextAreaValue] = useState<string>(JSON.stringify(props.jsonValue, null, 4));
     const handleTextAreaChange = (event: React.ChangeEvent<any>) => {
         const inputValue: string = event.currentTarget.value;
         setTextAreaValue(inputValue);
@@ -279,8 +279,55 @@ const Home = () => {
     };
     const [settingsValue, setSettingsValue] = useLocalStorage<Settings>("settings", {
         塩分濃度: 0.6,
-        調味料: [],
-        容器: []
+        調味料: [
+            {
+                名前: "塩",
+                ふりがな: "しお",
+                食塩相当量: 100
+            },
+            {
+                名前: "めんつゆ",
+                ふりがな: "めんつゆ",
+                食塩相当量: 16.0
+            },
+            {
+                名前: "コンソメ",
+                ふりがな: "こんそめ",
+                食塩相当量: 2.5
+            }
+        ],
+        容器: [
+            {
+                名前: "ホットクック内鍋",
+                ふりがな: "ホットクック",
+                重さ: 562
+            },
+            {
+                名前: "ボール1",
+                ふりがな: "ぼーるいち",
+                重さ: 180
+            },
+            {
+                名前: "ボール2",
+                ふりがな: "ぼーるに",
+                重さ: 280
+            },
+            {
+                名前: "ボール3",
+                ふりがな: "ぼーるさん",
+                重さ: 500
+            },
+            {
+                名前: "ボール4",
+                ふりがな: "ぼーるよん",
+                重さ: 700
+            },
+            {
+                名前: "ボール5",
+                ふりがな: "ぼーるご",
+                重さ: 1000
+            }
+        ]
     });
     const settingsValueWithDefault: Settings = {
         塩分濃度: settingsValue["塩分濃度"],
