@@ -48,15 +48,7 @@ const SettingTextArea = (props: SettingTextAreaProps) => {
             setInvalid(true);
         }
     };
-    return (
-        <>
-            <Text mb="8px">設定データ(JSON)</Text>
-            <Textarea
-                isInvalid={invalid}
-                value={textAreaValue}
-                ref={refHTMLTextAreaElement}
-                onChange={handleTextAreaChange}
-                placeholder={`{
+    const placeholder = `{
     "塩分濃度": 0.6,
     "調味料": [
         {
@@ -107,11 +99,20 @@ const SettingTextArea = (props: SettingTextAreaProps) => {
             "重さ": 1000
         }
     ]
-}`}
+}`;
+    return (
+        <>
+            <Text mb="8px">設定データ(JSON)</Text>
+            <Textarea
+                isInvalid={invalid}
+                value={textAreaValue}
+                ref={refHTMLTextAreaElement}
+                onChange={handleTextAreaChange}
+                placeholder={placeholder}
                 size="sm"
             />
             <Button variantColor="green" onClick={handleSaveClick}>
-                Save
+                保存
             </Button>
         </>
     );
