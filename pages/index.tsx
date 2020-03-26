@@ -114,6 +114,10 @@ const SettingTextArea = (props: SettingTextAreaProps) => {
             <Button variantColor="green" onClick={handleSaveClick}>
                 保存
             </Button>
+            <hr />
+            <a href={"https://github.com/azu/kitchin-salt-calc#%E8%A8%AD%E5%AE%9A%E3%83%87%E3%83%BC%E3%82%BF"}>
+                設定データの解説
+            </a>
         </>
     );
 };
@@ -332,10 +336,14 @@ const Home = () => {
                     --backColorA: #e39f35;
                     --backColorB: #dce3b1;
                 }
+                .main-table {
+                    max-width: 100%;
+                }
                 .main,
                 .main-table,
                 .main-inputContainer {
                     width: 100%;
+                    overflow-x: scroll;
                 }
                 .main-inputContainer {
                     display: flex;
@@ -385,7 +393,6 @@ const Home = () => {
                 }
 
                 a {
-                    color: inherit;
                     text-decoration: none;
                 }
 
